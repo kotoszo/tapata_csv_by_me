@@ -1,0 +1,37 @@
+<!DOCTYPE hhtml>
+<html>
+    <link href="/static/style.css" rel="stylesheet">
+    <head>
+        <title></title>
+    </head>
+    <body><a href="/">Back</a>
+
+        <h1>{{ result["question"]["question_title"] }}</h1>
+        <h2>{{ result["question"]["question_message"] }}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th> Answer id </th>
+                    <th> Answer </th>
+                    <th> Submission time </th>
+                    <th> Upvotes </th>
+                    <th> Image </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in result["answers"].items() %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value["answer_message"] }}</td>
+                        <td>{{ value["answer_submission_time"] }}</td>
+                        <td>{{ value["answer_vote_number"] }}</td>
+                        <td><img src="/static/{{ value['answer_image'] }}"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="/question/{{ result['question']['question_id'] }}" method="POST">
+        <input type="textarea" name="new_answer">
+        <button name="format" value="new_answer">Submit</button></form>
+    </body>
+</html>

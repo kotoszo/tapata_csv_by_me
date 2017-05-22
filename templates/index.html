@@ -1,0 +1,41 @@
+<!DOCTYPE hhtml>
+<html>
+    <link href="/static/style.css" rel="stylesheet">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <a href="/new-question">Feel free to ask!</a><br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th> id </th>
+                    
+                    <th> view number </th>
+                    <th> vote number </th>
+                    <th> title </th>
+                    <th> Submission time </th>
+                    <th>Remove</th>
+                    <!-- <th> message </th>
+                    <th> image </th> -->
+                </tr>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in questions_only.items() %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value["question_view_number"] }}</td>
+                    <td>{{ value["question_vote_number"] }}</td>
+                    <td><a href="/question/{{key}}">{{ value["question_title"] }}</a></td>
+                    <td>{{ value["question_submission_time"] }}</td>
+                    <td><form action="/form" method="POST">
+                        <button name="format" value="remove+{{key}}"> Delete</button></form></td>
+                    <!--<td>{{ value["question_message"] }}</td>
+                    <td>{{ value["question_image"] }}</td>-->
+                </tr>
+                {% endfor %}
+        </tbody>
+        </table>
+    </body>
+</html>
